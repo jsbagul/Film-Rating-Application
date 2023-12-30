@@ -53,12 +53,11 @@ public class ServiceImple implements Service{
     }
 
     public int updateFilmYear(int filmYear, String filmName) {
-        String query="Update filmInfo set filmYear=? where filmName=?";
+        String query="Update filmInfo set filmYear="+filmYear+" where filmName='"+filmName+"'";
         try {
-            PreparedStatement pstmt=connection.prepareStatement(query);
-            pstmt.setInt(1,filmYear);
-            pstmt.setString(2,filmName);
-           return pstmt.executeUpdate();
+            Statement stmt=connection.createStatement();
+          return stmt.executeUpdate(query);
+
         } catch (SQLException e) {
             System.out.println(e);
         }
